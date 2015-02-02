@@ -26,4 +26,9 @@ class TestPotter < Test::Unit::TestCase
   	assert_equal 30, basket(5)
   end
 
+  def test_four_books_wich_3_diff_get_10_on_them
+  	assert_equal 29.6, basket(4,3)
+  end
+
 end
+
