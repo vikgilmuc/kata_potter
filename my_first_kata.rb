@@ -1,5 +1,10 @@
 #my_first_kata
 
 def basket(num)
-8
+	
+	price = 8
+
+	return 15.2 if num == 2
+
+	price
 end

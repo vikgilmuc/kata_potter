@@ -8,5 +8,10 @@ class TestPotter < Test::Unit::TestCase
     assert_equal 8, basket(1)
   end
 
+  def test_two_books_5_per_cent_discount
+
+  	assert_equal 15.2, basket(2)
+  end
+
 
 end
