@@ -1,10 +1,9 @@
 #my_first_kata
 
+	BOOK_PRICE = 8
+	DISCOUNT =[0,1, 0.95, 0.90]
+
 def basket(num)
 	
-	price = 8
-
-	return 15.2 if num == 2
-
-	price
+	BOOK_PRICE * DISCOUNT[num] * num
 end
