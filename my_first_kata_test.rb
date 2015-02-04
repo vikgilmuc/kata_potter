@@ -3,8 +3,7 @@ require_relative "./my_first_kata"
 
 class TestPotter < Test::Unit::TestCase
 
-
-  def test_single_book_cost_8_eur
+def test_single_book_cost_8_eur
     assert_equal 8, basket([1])
   end
 
@@ -30,9 +29,10 @@ class TestPotter < Test::Unit::TestCase
   	assert_equal 29.6, basket([1,2,3,3])
   end
 
-  def test_2_of_first_2_of_second_2_of_third_1_of_fourth_1_of_fifth
+def test_2_of_first_2_of_second_2_of_third_1_of_fourth_1_of_fifth
   	assert_equal 51.20, basket([1,1,2,2,3,3,4,5])
   end
+
 
 	def test_special
   	assert_equal 51.20, basket([1,1,2,2,2,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5])
