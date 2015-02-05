@@ -29,10 +29,10 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 		(2..v).reverse_each{|x| 
 
 			
-				if (shop_items_by_index!=[0,0,0,0,0]) 
+			#	if (shop_items_by_index!=[0,0,0,0,0]) # ---- ugly but necessary
 						
 					while (shop_items_by_index[x-1]>0) 
-						
+						puts "array  before rest #{shop_items_by_index}"
 					lots_array[5-x]+=1
 
 							lot_counter=0
@@ -51,13 +51,13 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 							}
 
 							
-							shop_items_by_index.sort!
-							shop_items_by_index.reverse!
-							puts "array  after sort #{shop_items_by_index}"
+							shop_items_by_index.sort!.reverse!
+							
+							puts "array  after rest #{shop_items_by_index}"
 
-						    break if shop_items_by_index==[0,0,0,0,0]
+						   # break if shop_items_by_index==[0,0,0,0,0]
 				    end  #while
-			   end #if 0,0,0,0,0
+			  # end #if 0,0,0,0,0
 			    
 			}   # x reverse
 
@@ -65,11 +65,11 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 		mega_lots_array[5-v]=lots_array
 
 		
+			# exceptional fall :  lots of 5 and 3 without lots of  4 = 2 x lots of 4
 		if (mega_lots_array[0][0]!=0)&&(mega_lots_array[0][2]!=0)&&(mega_lots_array[0][1]==0)
 
-			# exceptional fall :  lots of 5 and 3 without lots of  4"
 			excep4lot=[mega_lots_array[0][0],mega_lots_array[0][2]].min
-			puts excep4lot
+			#puts excep4lot
 			mega_lots_array[0][1]+=(excep4lot)*2
 			mega_lots_array[0][0]-=excep4lot
 			mega_lots_array[0][2]-=excep4lot
@@ -77,10 +77,10 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 
 		end
 
-		price_array[v-2]=BOOK_PRICE*(lots_array[0]*DISCOUNT[5]*5+lots_array[1]*DISCOUNT[4]*4+lots_array[2]*DISCOUNT[3]*3+lots_array[3]*DISCOUNT[2]*2+shop_items_by_index[0])
-		
-		#price_array[v-2]=lots_array.each_with_index{|x,y| }
-
+		#price_array[v-2]=BOOK_PRICE*(lots_array[0]*DISCOUNT[5]*5+lots_array[1]*DISCOUNT[4]*4+lots_array[2]*DISCOUNT[3]*3+lots_array[3]*DISCOUNT[2]*2+shop_items_by_index[0])
+		#puts "lots_array #{lots_array}"
+		price_array[v-2]=(lots_array.each.with_index.inject(0){|sum,(val,index)| sum+calculate_discounted_price(5-index)*val} )+calculate_regular_price(shop_items_by_index[0])
+		#puts "price_array"
 		puts price_array[v-2]
 	
 
@@ -99,6 +99,8 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 	price_array.min
 
 end
+
+
 
 
 
