@@ -28,41 +28,19 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 
 		(2..v).reverse_each{|x| 
 
-			
-			#	if (shop_items_by_index!=[0,0,0,0,0]) # ---- ugly but necessary
 						
 					while (shop_items_by_index[x-1]>0) 
-						puts "array  before rest #{shop_items_by_index}"
-					lots_array[5-x]+=1
-
-							lot_counter=0
-
-							shop_items_by_index.map!{|value|
-								if lot_counter<x
-								
-									lot_counter+=1
-									value-1
-									
-								
-								elsif lot_counter==x
-										value			
-								end
-
-							}
-
-							
-							shop_items_by_index.sort!.reverse!
-							
-							puts "array  after rest #{shop_items_by_index}"
-
-						   # break if shop_items_by_index==[0,0,0,0,0]
-				    end  #while
-			  # end #if 0,0,0,0,0
+						
+						lots_array[5-x]+=1
+						take_out_a_lot(shop_items_by_index,x)
+						shop_items_by_index.sort!.reverse!
+													
+				    end  #while		 
 			    
 			}   # x reverse
 
 		
-		mega_lots_array[5-v]=lots_array
+			mega_lots_array[5-v]=lots_array
 
 		
 			# exceptional fall :  lots of 5 and 3 without lots of  4 = 2 x lots of 4
@@ -77,31 +55,44 @@ shop_items_by_index_original.sort!.reverse!   # example [5,3,3,3,2] 5 of book x,
 
 		end
 
-		#price_array[v-2]=BOOK_PRICE*(lots_array[0]*DISCOUNT[5]*5+lots_array[1]*DISCOUNT[4]*4+lots_array[2]*DISCOUNT[3]*3+lots_array[3]*DISCOUNT[2]*2+shop_items_by_index[0])
-		#puts "lots_array #{lots_array}"
+		
 		price_array[v-2]=(lots_array.each.with_index.inject(0){|sum,(val,index)| sum+calculate_discounted_price(5-index)*val} )+calculate_regular_price(shop_items_by_index[0])
-		#puts "price_array"
+		
 		puts price_array[v-2]
 	
 
 
 	end   # if V-1
 
-
-
 	
 
-	}  # v reverse
+}  # v reverse
 
-	price_array.push((shop_items.length)*8)   # last element of price array without discounts
-											#puts "price_array #{price_array}"
-												#puts price_array.min
+	price_array.push((shop_items.length)*8)   # last element of price array without discounts						
 	price_array.min
 
 end
 
 
+def take_out_a_lot (shop_items_by_index_fun, x)
 
+
+			lot_counter=0
+
+				shop_items_by_index_fun.map!{|value|
+					if lot_counter<x
+					
+						lot_counter+=1
+						value-1
+					
+					elsif lot_counter==x
+							value			
+					end
+
+				}
+
+		
+end
 
 
 def calculate_regular_price(amount_of_books)
