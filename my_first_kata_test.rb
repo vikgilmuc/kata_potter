@@ -4,6 +4,8 @@ require_relative "./my_first_kata"
 class TestPotter < Test::Unit::TestCase
 
 def test_single_book_cost_8_eur
+
+	puts "en test  8 eur"
     assert_equal 8, basket([1])
   end
 
@@ -35,6 +37,11 @@ def test_single_book_cost_8_eur
 
 
 	def test_special
+  	assert_equal 141.20, basket([1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,4,4,5,5,5,5])
+  end
+
+
+	def test_special_2
   	assert_equal 151.20, basket([1,1,2,2,2,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5])
   end
 
