@@ -17,6 +17,7 @@ class TestPotter < Test::Unit::TestCase
 
   def test_2_different_books_equal_5_per_cent_discount
     assert_equal 15.2, calculate([1,2])
+    assert_equal 23.2, calculate([1,2,1])
   end
 
   def test_3_4_5_different_books_10_20_25_per_cent_discount
@@ -28,8 +29,12 @@ class TestPotter < Test::Unit::TestCase
 
   def test_3_different_books_plus_1_10_percent_plus_8
     assert_equal 29.6, calculate([1, 2, 3, 1])
-    
   end 
+
+  def test_3_different_books_plus_2diff_plus_8
+    assert_equal 44.8 , calculate([1, 2, 3, 1, 2 , 1])
+  end 
+
 
 end
 
