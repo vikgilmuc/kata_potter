@@ -1,16 +1,19 @@
 class Basket
   PRICE = 8
+  DISCOUNTS =[0,0,0.05,0.10, 0.20, 0.25]
 
   def initialize(books)
     @books = books
+    @accumulator= 0 
   end
 
   def calculate
-    if @books.length==@books.uniq.length&&@books.length!=1
-      calculate_discounted_items 
-    else
-     calculate_non_discounted_items
+
+    if @books.length >= @books.uniq.length
+      @accumulator += calculate_discounted_items 
+      @books.shift(@books.uniq.length)
    end
+   @accumulator += calculate_non_discounted_items
   end
 
   private
@@ -21,6 +24,9 @@ class Basket
   end
 
   def calculate_discounted_items
-    @books.uniq.length*PRICE*0.95
+    @books.uniq.length*PRICE*(1-DISCOUNTS[@books.uniq.length])
   end
+
+
+
 end
