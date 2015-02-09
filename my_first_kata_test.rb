@@ -10,17 +10,17 @@ class TestPotter < Test::Unit::TestCase
     assert_equal 8, calculate([1])
   end
 
-  def test_2_books_equal_16
-    assert_equal 16, calculate([2])
+  def test_2_equal_books_equal_16
+    assert_equal 16, calculate([1,1])
   end
 
-  def test_3_books_equal_24
-    assert_equal 24, calculate([3])
+  def test_2_different_books_equal_5_per_cent_discount
+    assert_equal 15.2, calculate([1,2])
   end
 
-  def test_2_different_books_equal_16
-    assert_equal 16, calculate([1, 1])
-  end    
+  # def test_3_different_books_10_per_cent_discount
+  #   assert_equal 16, calculate([1, 1])
+  # end    
 end
 
 def calculate(basket)
