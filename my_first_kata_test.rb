@@ -35,6 +35,10 @@ class TestPotter < Test::Unit::TestCase
     assert_equal 44.8 , calculate([1, 2, 3, 1, 2 , 1])
   end 
 
+  def test_3_different_books_plus_2diff_plus_8_changed_order
+    assert_equal 44.8 , calculate([3, 2, 2, 1, 1 , 1])
+  end 
+
 
 end
 

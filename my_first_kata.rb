@@ -10,8 +10,7 @@ class Basket
   def calculate
   
       @accumulator += calculate_discounted_items 
-      @books.shift(@books.uniq.length)
-     
+      @books.uniq.each{|x|@books.delete_at(@books.index(x))}
       if @books.length > @books.uniq.length
         calculate 
       else
