@@ -8,8 +8,6 @@ class Basket
   end
 
   def calculate
-
-    if @books.length >= @books.uniq.length
   
       @accumulator += calculate_discounted_items 
       @books.shift(@books.uniq.length)
@@ -20,7 +18,7 @@ class Basket
         return @accumulator += calculate_non_discounted_items
       end
 
-     end
+    
   end
 
   private
