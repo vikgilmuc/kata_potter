@@ -5,46 +5,50 @@ class Basket
   def initialize(books)
 
     @books = books
-    @books_origin=@books.dup
-    @accumulator= 0 
-    @packs=4
-    @flag=0
+    @books_origin = @books.dup
+    @accumulator = 0 
+    @packs = 0
+    
+    
   end
 
   def calculate
-
-
-    if @books.length >= @books.uniq.length && @books.uniq.length > 1
-     
-     
-      uniq_1=@books.uniq.take(@packs)
-      @accumulator += calculate_discounted_items (uniq_1.length )
-      uniq_1.each{|x|  @books.delete_at(@books.index(x)) }
-      
-        calculate
-
-    else 
-
-      puts @accumulator
-      puts "books#{@books}"
-
-      if ((@accumulator == 25.6) &&  (@books==[1])) && @flag==0
-        @packs=5
-        @accumulator=0
-        @flag=1
-        @books=@books_origin
-        calculate
-        
-      end
-
-      return @accumulator += calculate_non_discounted_items
+    min_price=0
+    for @packs in 2..5 
+      @books=@books_origin.dup
+      @accumulator=0
+      this_min= calculate_lowest(@packs)
+      min_price= this_min if (this_min<min_price || min_price==0)
     end
+      min_price
   end
 
 
 
 
   private
+
+
+  def calculate_lowest(packs)
+
+       
+      if @books.length >= @books.uniq.length && @books.uniq.length > 1
+       
+        uniq_pack = @books.uniq.take(packs) 
+        @accumulator += calculate_discounted_items (uniq_pack.length )
+        uniq_pack.each{|x|  @books.delete_at(@books.index(x)) }
+        calculate_lowest(packs)
+
+      else
+
+       @accumulator += calculate_non_discounted_items
+
+      end
+        
+        @accumulator 
+
+  end
+
 
 
   def calculate_non_discounted_items
